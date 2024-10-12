@@ -6,5 +6,10 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "pg": "^8.13.0"
+  },
+  "scripts": {
+    "start-proapp": "node proapp.js",
+    "start-app": "node app.js",
+    "start-otherfile": "node otherfile.js"
   }
 }
