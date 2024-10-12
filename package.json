@@ -1,0 +1,10 @@
+{
+  "name": "all-my-projects",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "proapp.js",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0"
+  }
+}
