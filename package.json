@@ -1,15 +1,17 @@
 {
-  "name": "all-my-projects",
+  "name": "learningjavascript",
   "version": "1.0.0",
   "type": "module",
   "main": "proapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "pg": "^8.13.0"
-  },
-  "scripts": {
-    "start-proapp": "node proapp.js",
-    "start-app": "node app.js",
-    "start-otherfile": "node otherfile.js"
+    "pg": "^8.13.1"
   }
 }
