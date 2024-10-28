@@ -26,6 +26,7 @@ const insertCourse = async (code, name, department, instructor) => {
     }
 };
 
+// insertCourse('CS50', 'Introduction to Computer Science', 'Science and Technology', 'David Malan');
 const getCourseData = async () => {
     try {
         const result = await pool.query('SELECT * FROM courses');
@@ -35,8 +36,45 @@ const getCourseData = async () => {
     }
 };
 
-// Function calls
-// Uncomment the next line if you need to insert a new course
-// insertCourse('CS50', 'Introduction to Computer Science', 'Science and Technology', 'David Malan');
-
 getCourseData();
+
+
+const productJson = {
+    name: 'White T-shirt',
+    price: 5.99,
+    inventory: [
+      { size: 'S', quantity: 100 },
+      { size: 'M', quantity: 150 },
+      { size: 'L', quantity: 75 }
+    ],
+    returnable: true,
+    brand: { name: 'Luxury', origin: 'Taiwan' },
+    customization: null
+};
+const jsonString = JSON.stringify(productJson);
+
+const insertProductData = async (jsonData) => {
+    const query = 'INSERT INTO products(data) VALUES($1)';
+    try {
+        await pool.query(query, [jsonData]);
+        console.log('Product data inserted successfully');
+    } catch (err) {
+        console.error('Error inserting product data:', err);
+    }
+};
+
+const getProductData = async () => {
+    try {
+        const result = await pool.query('SELECT * FROM products');
+        console.table(result.rows);  // Display the product data
+    } catch (err) {
+        console.error(`Error retrieving product data: ${err.message}`);
+    }
+};
+
+const insertAndDisplayProductData = async () => {
+    await insertProductData(jsonString);  // Insert the data
+    await getProductData();  // Fetch and display the data
+};
+
+insertAndDisplayProductData();
