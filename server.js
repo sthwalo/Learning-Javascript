@@ -38,6 +38,18 @@ app.get('/courses', async (req, res) => {
     }
 });
 
+// Define the route for fetching product data
+app.get('/products', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT data FROM products'); // Assuming 'data' contains the JSON data
+        const products = result.rows.map(row => row.data);
+        res.json(products); // Send the JSON data directly to the client
+    } catch (err) {
+        console.error(`Error retrieving product data: ${err.message}`);
+        res.status(500).send('Server error');
+    }
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

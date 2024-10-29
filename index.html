@@ -1,0 +1,29 @@
+<script>
+    // Function to make an XMLHttpRequest to fetch courses
+    function fetchCourses() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:3000/courses", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Courses Data:', xhr.responseText);
+            }
+        };
+        xhr.send();
+    }
+    
+    // Function to make an XMLHttpRequest to fetch products
+    function fetchProducts() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:3000/products", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Products Data:', xhr.responseText);
+            }
+        };
+        xhr.send();
+    }
+    
+    // Call the functions to fetch data
+    fetchCourses();
+    fetchProducts();
+    </script>

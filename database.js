@@ -53,6 +53,30 @@ const productJson = {
 };
 const jsonString = JSON.stringify(productJson);
 
+const checkData = async () => {
+    try {
+        const result = await pool.query('SELECT * FROM products');
+        console.log('Current data:', result.rows);
+    } catch (err) {
+        console.error('Error checking data:', err.message);
+    }
+};
+
+checkData();
+/* 
+const clearData = async () => {
+    try {
+        await pool.query('DELETE FROM products');
+        console.log('Data cleared successfully');
+    } catch (err) {
+        console.error('Error clearing data:', err.message);
+    }
+};
+
+clearData().then(() => {
+    insertProductData(jsonString);
+});
+ */
 const insertProductData = async (jsonData) => {
     const query = 'INSERT INTO products(data) VALUES($1)';
     try {
@@ -65,13 +89,14 @@ const insertProductData = async (jsonData) => {
 
 const getProductData = async () => {
     try {
-        const result = await pool.query('SELECT * FROM products');
-        console.table(result.rows);  // Display the product data
+        const result = await pool.query('SELECT data FROM products');
+        result.rows.forEach(row => {
+            console.log(JSON.stringify(row.data, null, 2)); // This will nicely format the JSON data
+        });
     } catch (err) {
         console.error(`Error retrieving product data: ${err.message}`);
     }
 };
-
 const insertAndDisplayProductData = async () => {
     await insertProductData(jsonString);  // Insert the data
     await getProductData();  // Fetch and display the data
